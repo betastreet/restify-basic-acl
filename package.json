@@ -1,0 +1,39 @@
+{
+  "author": {
+    "email": "leduc.paul@gmail.com",
+    "name": "Paul Leduc"
+  },
+  "bugs": {
+    "url": "https://github.com/paulleduc/restify-basic-acl/issues"
+  },
+  "dependencies": {},
+  "description": "Utilize basic role-based HTTP method ACL as a Restify middleware.",
+  "devDependencies": {},
+  "directories": {},
+  "homepage": "https://github.com/paulleduc/restify-basic-acl#readme",
+  "keywords": [
+    "restify",
+    "plugin",
+    "extension",
+    "acl",
+    "permissions"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "maintainers": [
+    {
+      "email": "leduc.paul@gmail.com",
+      "name": "paulleduc"
+    }
+  ],
+  "name": "restify-basic-acl",
+  "optionalDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/paulleduc/restify-basic-acl.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "0.0.1"
+}

@@ -37,6 +37,10 @@ server
         rolesHeader: 'X-User-Roles',
         // pass in your permission data here, that one of the user's roles should match
         roles: roles,
+        // optionally specify exact routes that should bypass ACL entirely
+        unprotectedRoutes: [
+            '/health',
+        ],
     }, restify))
     .listen(3000);
 ```

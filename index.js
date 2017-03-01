@@ -38,6 +38,20 @@ module.exports.basicAclPlugin = function (options, restify) {
             methodAllowedForRole = true;
         } else if(req.roles) {
             for (let i = 0; i < req.roles.length; i++) {
+                //check if there are comob roles (combo roles are separated by space)
+                if(/\s/.test(req.roles[i])) {
+                    const comboRoles = req.roles[i].split(' ');
+                    for(let j = 0; j < comboRoles.length; j++) {
+                        if( !options.roles[comboRoles[j]] || options.roles[comboRoles[j]].indexOf(req.method.toLowerCase()) === -1 ) {
+                            //break if the method doesn't exist in any of the roles
+                            break;
+                        } else if (options.roles[comboRoles[j]]
+                            && options.roles[comboRoles[j]].indexOf(req.method.toLowerCase()) !== -1
+                            && j == comboRoles.length -1) {
+                            methodAllowedForRole = true;
+                        }
+                    }
+                }
                 if (options.roles[req.roles[i]]
                     && options.roles[req.roles[i]].indexOf(req.method.toLowerCase()) !== -1) {
                     methodAllowedForRole = true;

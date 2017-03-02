@@ -46,7 +46,7 @@ module.exports.basicAclPlugin = function (options, restify) {
         }
 
         if (skipAcl) {
-            methodAllowedForRole = true;q
+            methodAllowedForRole = true;
         } else if(req.roles) {
             for (let i = 0; i < req.roles.length; i++) {
                 if(req.roles.length > 1) {

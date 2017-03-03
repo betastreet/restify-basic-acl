@@ -1,3 +1,5 @@
+const _ = require('lodash');
+
 module.exports = {};
 
 module.exports.basicAclPlugin = function (options, restify) {
@@ -33,11 +35,30 @@ module.exports.basicAclPlugin = function (options, restify) {
         req.roles = rolesHeader ? rolesHeader.split(',').map((s) => { return s.trim(); }) : null;
 
         let methodAllowedForRole = false;
+        let comboRoles = [];
+        //iterate through options.roles to get combo roles
+        for (let k in options.roles) {
+            if(/\+/.test(k)) {
+                let comboRole = k.split('+');
+                // comboRoles.push(comboRole);
+                comboRoles.push({roleIdentifier: k, comboRole: comboRole});
+            }
+        }
 
         if (skipAcl) {
             methodAllowedForRole = true;
         } else if(req.roles) {
             for (let i = 0; i < req.roles.length; i++) {
+                if(req.roles.length > 1) {
+                    for(let r = 0; r < comboRoles.length; r++) {
+                        //compare the entire req.roles with each comboRole array
+                        if (_.difference(comboRoles[r].comboRole, req.roles).length == 0
+                            && options.roles[comboRoles[r].roleIdentifier].indexOf(req.method.toLowerCase()) !== -1) {
+                            methodAllowedForRole = true;
+                            break;
+                        }
+                    }
+                }
                 if (options.roles[req.roles[i]]
                     && options.roles[req.roles[i]].indexOf(req.method.toLowerCase()) !== -1) {
                     methodAllowedForRole = true;

@@ -6,9 +6,15 @@
   "bugs": {
     "url": "https://github.com/paulleduc/restify-basic-acl/issues"
   },
-  "dependencies": {},
+  "dependencies": {
+    "restify": "^4.3.0"
+  },
   "description": "Utilize basic role-based HTTP method ACL as a Restify middleware.",
-  "devDependencies": {},
+  "devDependencies": {
+    "supertest": "^3.0.0",
+    "jest": "^19.0.2",
+    "node-mocks-http": "^1.6.1"
+  },
   "directories": {},
   "homepage": "https://github.com/paulleduc/restify-basic-acl#readme",
   "keywords": [
@@ -35,5 +41,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "version": "0.1.0"
+  "version": "0.1.0",
+  "jest": {
+    "bail": true,
+    "collectCoverage": true
+  }
 }
